@@ -9,6 +9,7 @@ class Node {
     public var id(default, null):Int = -1;
     public var name(default, null):Null<String> = null;
     public var camera(default, null):Null<Camera> = null;
+    public var parent(default, null):Null<Node> = null;
     public var children(default, null):Vector<Node> = new Vector<Node>(0);
     public var skin(default, null):Null<Skin> = null;
     public var matrix(default, null):Null<Vector<Float>> = null;
@@ -26,7 +27,9 @@ class Node {
         if(node.children != null) {
             children = new Vector<Node>(node.children.length);
             for(i in 0...node.children.length) {
-                children[i] = existingNodes[node.children[i]];
+                final current = existingNodes[node.children[i]];
+                current.parent = this;
+                children[i] = current;
             }
         }
         if(node.skin != null) skin = gltf.skins[node.skin];
