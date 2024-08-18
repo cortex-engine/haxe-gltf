@@ -6,13 +6,14 @@ import gltf.schema.TMaterialPBRMetallicRoughness;
 import gltf.schema.TMaterial;
 
 @:allow(gltf.GLTF)
-class Material {
+class Material extends Property {
     public var name(default, null):Null<String> = null;
     public var pbrMetallicRoughness(default, null):Null<TMaterialPBRMetallicRoughness> = null;
 
     function new() {}
 
     function load(gltf:GLTF, material:TMaterial):Void {
+        super.loadProperty(gltf, material);
         name = material.name;
         pbrMetallicRoughness = material.pbrMetallicRoughness;
     }

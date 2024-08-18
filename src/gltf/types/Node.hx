@@ -5,7 +5,7 @@ import gltf.schema.TNode;
 import haxe.ds.Vector;
 
 @:allow(gltf.GLTF)
-class Node {
+class Node extends Property {
     public var id(default, null):Int = -1;
     public var name(default, null):Null<String> = null;
     public var camera(default, null):Null<Camera> = null;
@@ -22,6 +22,7 @@ class Node {
     function new() {}
 
     function load(gltf:GLTF, node:TNode, existingNodes:Vector<Node>):Void {
+        super.loadProperty(gltf, node);
         name = node.name;
         if(node.camera != null) camera = gltf.cameras[node.camera];
         if(node.children != null) {
