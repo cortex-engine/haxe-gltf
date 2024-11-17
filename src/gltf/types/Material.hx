@@ -4,10 +4,14 @@ import haxe.ds.Vector;
 import gltf.schema.TGLTF;
 import gltf.schema.TMaterialPBRMetallicRoughness;
 import gltf.schema.TMaterial;
+import gltf.schema.TMaterialNormalTextureInfo;
+import gltf.schema.TTextureInfo;
 
 @:allow(gltf.GLTF)
 class Material extends Property {
     public var name(default, null):Null<String> = null;
+    public var normalTexture(default, null):Null<TMaterialNormalTextureInfo> = null;
+    public var emissiveTexture(default, null):Null<TTextureInfo> = null;
     public var pbrMetallicRoughness(default, null):Null<TMaterialPBRMetallicRoughness> = null;
 
     function new() {}
@@ -16,6 +20,8 @@ class Material extends Property {
         super.loadProperty(gltf, material);
         name = material.name;
         pbrMetallicRoughness = material.pbrMetallicRoughness;
+        normalTexture = material.normalTexture;
+        emissiveTexture = material.emissiveTexture;
     }
 
     static function loadFromRaw(gltf:GLTF, raw:TGLTF):Vector<Material> {

@@ -5,7 +5,7 @@ import gltf.schema.TGLTFProperty;
 class Property {
 	public var extras(default, null):Null<Map<String, Dynamic>> = null;
 
-	function loadProperty(gltf:GLTF, prop:TGLTFProperty):Void {
+	inline function loadProperty(gltf:GLTF, prop:TGLTFProperty):Void {
         final ext:haxe.DynamicAccess<Dynamic> = prop.extras;
         if (ext != null) {
             extras = new Map();
